@@ -1,5 +1,6 @@
 import express from 'express'
 import logger from './utils/logger'
+import { VehicleMiddleWare } from './middleWares/vehicleMiddleWare'
 
 class App {
   public app: express.Application;
@@ -14,7 +15,7 @@ class App {
   }
 
   private initializeMiddlewares() {
-    // this.app.use(carMiddleWare.json());
+    this.app.use(VehicleMiddleWare.logRequest);
   }
 
   private initializeControllers(controllers: any[]) {
