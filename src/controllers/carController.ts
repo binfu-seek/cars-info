@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import VehicleException from '../exceptions/vehicleException';
 import { IVehicleService } from '../services/IVehicleService';
 
 class VehicleController {
@@ -27,19 +28,27 @@ class VehicleController {
             const totalNum = await this.vehicleService.getTotalNumberOfVehicles();
             response.status(200).json(totalNum)
         } catch(ex: any) {
-            response.status(200)
+            throw new VehicleException(500, ex.error || 'Error retrieving total number of vehicles in the area!');
         }
     }
 
     getExistingTypes = async (request: express.Request, response: express.Response) => {
-        const vehicleTypes = await this.vehicleService.getExistingVecleTypes();
-        response.json(vehicleTypes);
+        try {
+            const vehicleTypes = await this.vehicleService.getExistingVecleTypes();
+            response.json(vehicleTypes);
+        } catch(ex: any) {
+            throw new VehicleException(500, ex.error || 'Error retrieving existing vehicle types in the area!');
+        }
     }
 
     getMostPreferedVehicleType = async (request: express.Request, response: express.Response) => {
-        const vehicleType = await this.vehicleService.getMostPreferedVehicleType();
-        response.json(vehicleType);
-  }
+        try {
+            const vehicleType = await this.vehicleService.getMostPreferedVehicleType();
+            response.json(vehicleType);
+        } catch(ex: any) {
+            throw new VehicleException(500, ex.error || 'Error getting most prefered vehicle type in the area!');
+        }
+    }
 }
 
 export default VehicleController;
