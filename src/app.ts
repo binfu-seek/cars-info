@@ -1,4 +1,5 @@
 import express from 'express'
+import logger from './utils/logger'
 
 class App {
   public app: express.Application;
@@ -24,7 +25,7 @@ class App {
 
   public listen() {
     this.app.listen(this.port, () => {
-    //   console.log(`App listening on the port ${this.port}`);
+        logger.info(`App is running on port ${this.port}`);
     });
   }
 }
