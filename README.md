@@ -11,10 +11,10 @@
   - The service layer focuses on prosessing business logic using the data access from repository as an ingredience
   - The controller layer focuses on processing processing client requests
 
-### Features included in the implementation
+### Highlights
   - The concept of Dependency Injection is adopted, but not using any 3rd party DI container at the moment.
   - Middlewares to do the logging of incoming requests and error handling job
-  -
+  - An abstract base Vehicle data model is created, and Car, Truck, Bus are derived from the Vehicle model. In this way, the code can be extended to accomodate more vehicle types in the future just by adding in new classes also derive from this base Vehicle type.
   
 ### Jobs yet to be done
    - Unit test to be added
